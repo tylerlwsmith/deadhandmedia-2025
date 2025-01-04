@@ -50,11 +50,24 @@ const pageDescription = description?.trim();
   </head>
   <body>
     <slot name="body">
-      <slot name="header"><header>Header</header></slot>
+      <div class="page-wrapper">
+        <slot name="header"><header>Header</header></slot>
 
-      <slot />
+        <slot />
 
-      <slot name="footer"><footer>Footer</footer></slot>
+        <slot name="footer"><footer>Footer</footer></slot>
+      </div>
+
+      <style lang="scss">
+        .page-wrapper {
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+          @media (pointer: coarse) {
+            min-height: -webkit-fill-available;
+          }
+        }
+      </style>
     </slot>
   </body>
 </html>

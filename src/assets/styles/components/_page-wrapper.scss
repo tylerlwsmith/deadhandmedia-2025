@@ -1,8 +1,0 @@
-.page-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  @media (pointer: coarse) {
-    min-height: -webkit-fill-available;
-  }
-}
