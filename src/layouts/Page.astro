@@ -1,0 +1,60 @@
+---
+import "@fontsource-variable/raleway";
+import "src/assets/styles/style.scss";
+
+import openGraphImage from "src/assets/images/open-graph-image.webp";
+import favicon from "src/assets/images/tylers-giant-head.svg";
+import { SITE_NAME } from "src/constants";
+import Analytics from "src/components/Analytics.astro";
+
+const isProd = import.meta.env.PROD;
+
+type Props = {
+  title: string;
+  description: string | null;
+  omitSiteName: boolean;
+};
+const { title, omitSiteName, description = null } = Astro.props;
+const pageTitle = omitSiteName ? title : `${title.trim()} | ${SITE_NAME}`;
+const pageDescription = description?.trim();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {isProd ? <Analytics /> : null}
+    <title>{pageTitle}</title>
+    {
+      pageDescription ? (
+        <meta name="description" content={pageDescription} />
+      ) : null
+    }
+
+    <meta property="og:title" content={pageTitle} />
+    {
+      pageDescription ? (
+        <meta property="og:description" content={pageDescription} />
+      ) : null
+    }
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:image" content={openGraphImage.src} />
+    <meta property="og:image:width" content={`${openGraphImage.width}`} />
+    <meta property="og:image:height" content={`${openGraphImage.height}`} />
+    <link href={favicon.src} rel="icon" />
+    <meta name="generator" content={Astro.generator} />
+    <script src="src/assets/scripts/app.js"></script>
+    <slot name="head" />
+  </head>
+  <body>
+    <slot name="body">
+      <slot name="header"><header>Header</header></slot>
+
+      <slot />
+
+      <slot name="footer"><footer>Footer</footer></slot>
+    </slot>
+  </body>
+</html>

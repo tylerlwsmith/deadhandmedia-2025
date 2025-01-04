@@ -13,6 +13,8 @@
   "dependencies": {
     "@alpinejs/persist": "^3.14.8",
     "@astrojs/cloudflare": "^12.1.0",
+    "@fontsource-variable/raleway": "^5.1.1",
+    "@fontsource/bungee": "^5.1.1",
     "alpinejs": "^3.14.8",
     "astro": "^5.1.2",
     "gsap": "^3.12.5",

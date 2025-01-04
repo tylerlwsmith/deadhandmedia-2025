@@ -1,10 +1,14 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import "@fontsource/bungee";
+
+import Page from "src/layouts/Page.astro";
 
 const content =
   "I build software using Laravel, Django, Rails, React, Alpine, Node, Go, Docker, and a lot of duct tape.";
 ---
 
-<Layout title="Tyler Smith" omitSiteName={true} description={content}>
-  {content}
-</Layout>
+<Page title="Tyler Smith" omitSiteName={true} description={content}>
+  <Fragment slot="body">
+    {content}
+  </Fragment>
+</Page>
