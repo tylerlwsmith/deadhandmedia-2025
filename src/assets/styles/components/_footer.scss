@@ -5,18 +5,20 @@
   $vertical-padding: 26px;
   $children-vertical-padding: 5px;
   @include mixins.site-padding;
-  margin-top: auto;
-  padding-top: $vertical-padding;
-  padding-bottom: $vertical-padding;
-  font-weight: 400;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  @media (max-width: variables.$breakpoint__sm) {
-    & > * {
-      flex-basis: 100%;
-      text-align: center;
+  & {
+    margin-top: auto;
+    padding-top: $vertical-padding;
+    padding-bottom: $vertical-padding;
+    font-weight: 400;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    @media (max-width: variables.$breakpoint__sm) {
+      & > * {
+        flex-basis: 100%;
+        text-align: center;
+      }
     }
   }
 }

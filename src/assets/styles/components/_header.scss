@@ -4,23 +4,25 @@
 $space-between-items: 22px;
 .header {
   @include mixins.site-padding;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  border-top: 4px solid variables.$color__purple--300;
-  @at-root .header--collapse & {
-    @media (max-width: variables.$breakpoint__md) {
-      align-items: center;
+  & {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-top: 4px solid variables.$color__purple--300;
+    @at-root .header--collapse & {
+      @media (max-width: variables.$breakpoint__md) {
+        align-items: center;
+      }
     }
-  }
-  &--absolute {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
+    &--absolute {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+    }
   }
 }
 .header__title {
