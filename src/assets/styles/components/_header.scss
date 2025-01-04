@@ -1,0 +1,101 @@
+@use "../mixins";
+@use "../variables";
+
+$space-between-items: 22px;
+.header {
+  @include mixins.site-padding;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-top: 4px solid variables.$color__purple--300;
+  @at-root .header--collapse & {
+    @media (max-width: variables.$breakpoint__md) {
+      align-items: center;
+    }
+  }
+  &--absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+}
+.header__title {
+  display: inline-block;
+  font-family: variables.$font-family__headings;
+  font-size: 22px;
+  padding-bottom: 0;
+  @if not variables.$feature-flag__mobile-nav {
+    margin-right: 50px;
+  }
+  color: variables.$color__black;
+}
+.header__navigation {
+  @at-root .header--collapse & {
+    @media (max-width: variables.$breakpoint__md) {
+      padding-top: 12px;
+      flex-basis: 100%;
+      @at-root .header--collapse
+          #navigation-toggle:not([aria-expanded="true"])
+          + .header__navigation {
+        display: none;
+      }
+    }
+  }
+}
+.header__menu {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  padding-left: 0;
+  font-size: 16px;
+  list-style: none;
+  flex-grow: 1;
+  flex-basis: auto;
+  margin-left: -($space-between-items * 0.5);
+  margin-right: -($space-between-items * 0.5);
+  @at-root .header--collapse & {
+    @media (max-width: variables.$breakpoint__md) {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      margin-left: -20px;
+      margin-right: -20px;
+      border-top: 1px solid #ccc;
+    }
+  }
+}
+.header__menu-item {
+  position: relative;
+  top: 5px;
+  padding-left: $space-between-items * 0.5;
+  padding-right: $space-between-items * 0.5;
+  @at-root .header--collapse & {
+    @media (max-width: variables.$breakpoint__md) {
+      top: 0;
+      flex-basis: 100%;
+      padding: 0;
+      border-bottom: 1px solid #ccc;
+    }
+  }
+}
+.header__menu-item-link {
+  color: variables.$color__muted;
+  &--is-active,
+  &--is-active:hover,
+  &--is-active:focus,
+  &--is-active:active {
+    color: variables.$color__purple--400;
+  }
+  @at-root .header--collapse & {
+    @media (max-width: variables.$breakpoint__md) {
+      display: block;
+      padding: 14px 20px;
+    }
+  }
+  @at-root .header--light & {
+    color: variables.$color__white;
+  }
+}

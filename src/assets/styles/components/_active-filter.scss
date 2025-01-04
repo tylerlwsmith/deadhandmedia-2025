@@ -1,0 +1,35 @@
+@use "../variables";
+
+.active-filter {
+  display: inline-block;
+  color: variables.$color__white;
+  background: variables.$color__purple--500;
+  font-size: 12px;
+  padding: 5px 14px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border: 0;
+  appearance: none;
+  font-weight: 600;
+  border-radius: 5px;
+}
+.active-filter__label {
+  font-size: 14px;
+  margin-right: 6px;
+  font-weight: 600;
+}
+.active-filter__container {
+  position: sticky;
+  top: 0;
+  overflow-x: hidden;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.active-filter__list {
+  margin-bottom: 20px;
+  padding: 3px 20px;
+  background: variables.$color__background;
+  @at-root .active-filter__container--stuck & {
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+  }
+}

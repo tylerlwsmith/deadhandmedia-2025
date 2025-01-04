@@ -1,0 +1,30 @@
+@use "../variables";
+
+.page-project__screenshot {
+  position: absolute !important;
+  transform: none;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 !important;
+  max-width: 100% !important;
+}
+.page-project__screenshot-wrapper {
+  margin-bottom: 26px;
+  position: relative;
+}
+h1.page-project__title {
+  margin-top: 0.8em;
+  font-size: 50px;
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+  font-weight: 400;
+  @media (max-width: variables.$breakpoint__md) {
+    font-size: 32px;
+  }
+  @media (max-width: variables.$breakpoint__sm) {
+    margin-top: 1.2em;
+    font-size: 24px;
+  }
+}

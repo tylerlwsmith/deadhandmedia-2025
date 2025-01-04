@@ -1,0 +1,10 @@
+@use "../variables";
+
+.vertical-page-padding {
+  padding-top: 50px;
+  padding-bottom: 60px;
+  @media (max-width: variables.$breakpoint__sm) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}

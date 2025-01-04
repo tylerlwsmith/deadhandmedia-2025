@@ -1,0 +1,8 @@
+@use "../variables";
+
+.back-link {
+  padding-top: 20px;
+  a {
+    color: variables.$color__purple--400;
+  }
+}

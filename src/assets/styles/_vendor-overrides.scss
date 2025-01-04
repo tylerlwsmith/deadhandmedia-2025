@@ -1,0 +1,13 @@
+@use "variables";
+
+.fa-inverse {
+  color: variables.$color__background;
+}
+
+// Hugo tweet component
+.twitter-tweet {
+  max-width: 100% !important;
+  * {
+    max-width: 100% !important;
+  }
+}

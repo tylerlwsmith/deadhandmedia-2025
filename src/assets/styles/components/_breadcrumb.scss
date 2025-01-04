@@ -1,0 +1,22 @@
+@use "../variables";
+
+.breadcrumb {
+  display: inline;
+  font-size: 16px;
+  a {
+    color: variables.$color__purple--400;
+  }
+  @media (max-width: variables.$breakpoint__md) {
+    font-size: 14px;
+  }
+  & + &:before {
+    display: inline;
+    padding: 0 5px;
+    content: "/";
+  }
+  &__wrapper {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+  }
+}

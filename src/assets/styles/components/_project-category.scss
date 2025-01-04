@@ -1,0 +1,10 @@
+@use "../mixins";
+
+.project-category {
+  @include mixins.pill;
+}
+.project-category__wrapper {
+  margin: 0;
+  order: -1;
+  margin-bottom: 4px;
+}

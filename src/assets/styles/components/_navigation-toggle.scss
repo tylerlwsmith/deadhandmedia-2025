@@ -1,0 +1,11 @@
+@use "../variables";
+
+#navigation-toggle {
+  display: none;
+  @media (max-width: variables.$breakpoint__md) {
+    @at-root .header--collapse & {
+      display: inline-flex !important;
+      align-items: center;
+    }
+  }
+}
