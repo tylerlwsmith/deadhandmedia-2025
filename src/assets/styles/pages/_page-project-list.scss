@@ -1,5 +1,5 @@
 @use "../mixins";
-@use "../variables";
+@use "styles/variables";
 
 .page-project-list {
   @include mixins.page-padding-bottom;

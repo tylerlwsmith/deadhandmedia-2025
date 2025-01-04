@@ -1,4 +1,4 @@
-import { prefersReducedMotion } from "./helpers";
+import { prefersReducedMotion } from "scripts/helpers";
 /**
  * Animate the homepage text. This must execute immediately: do not move into a
  * "DOMContentLoaded" callback.
