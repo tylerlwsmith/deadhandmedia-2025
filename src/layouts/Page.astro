@@ -6,6 +6,7 @@ import openGraphImage from "src/assets/images/open-graph-image.webp";
 import favicon from "src/assets/images/tylers-giant-head.svg";
 import { SITE_NAME } from "src/constants";
 import Analytics from "src/components/Analytics.astro";
+import Footer from "src/components/Footer.astro";
 
 const isProd = import.meta.env.PROD;
 
@@ -46,6 +47,11 @@ const pageDescription = description?.trim();
     <link href={favicon.src} rel="icon" />
     <meta name="generator" content={Astro.generator} />
     <script src="src/assets/scripts/app.js"></script>
+    <script
+      is:inline
+      src="https://kit.fontawesome.com/e37b089b64.js"
+      crossorigin="anonymous"
+    ></script>
     <slot name="head" />
   </head>
   <body>
@@ -55,7 +61,7 @@ const pageDescription = description?.trim();
 
         <slot />
 
-        <slot name="footer"><footer>Footer</footer></slot>
+        <slot name="footer"><Footer /></slot>
       </div>
 
       <style lang="scss">

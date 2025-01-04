@@ -1,0 +1,27 @@
+---
+import { socialLinks } from "src/data/socialLinks";
+import Copyright from "./Copyright.astro";
+---
+
+<footer class="footer">
+  <div class="footer__copyright-wrapper">
+    <Copyright />
+  </div>
+  <div class="footer__platform-link-wrapper">
+    <ul class="platform-link__list">
+      {
+        socialLinks.map((link) => (
+          <li class="platform-link__wrapper">
+            <a href={link.url} rel="noreferrer noopener" class="platform-link">
+              <span class="fa-stack">
+                <i class="fas fa-circle fa-stack-2x" />
+                <i class:list={[link.iconAlt, "fab fa-stack-1x fa-inverse"]} />
+              </span>
+              <span class="sr-only">{link.platform}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</footer>
