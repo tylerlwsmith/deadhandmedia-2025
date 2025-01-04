@@ -1,52 +1,50 @@
 @use "styles/variables";
 
-@at-root {
-  $margin: 16px;
-  .project-link {
-    font-size: 15px;
-    padding: 0;
-    margin-top: 0;
-    margin-bottom: 10px;
+$margin: 16px;
+.project-link {
+  font-size: 15px;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: variables.$color__white;
+  display: inline-block;
+  background: variables.$color__purple--500;
+  padding: 10px 10px;
+  width: 220px;
+  text-align: center;
+  border-radius: 5px;
+  &:hover,
+  &:focus,
+  &:active {
     color: variables.$color__white;
-    display: inline-block;
-    background: variables.$color__purple--500;
-    padding: 10px 10px;
-    width: 220px;
-    text-align: center;
-    border-radius: 5px;
-    &:hover,
-    &:focus,
-    &:active {
-      color: variables.$color__white;
-      background: variables.$color__purple--400;
-      [class^="fa"] {
-        color: variables.$color__white;
-      }
-    }
-    @media (max-width: variables.$breakpoint__sm) {
-      font-size: 14px;
-    }
+    background: variables.$color__purple--400;
     [class^="fa"] {
       color: variables.$color__white;
-      margin-right: 8px;
     }
   }
-  .project-link__list {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    margin-top: 50px;
-    margin-bottom: 20px;
-    margin-left: -($margin * 0.5);
-    margin-right: -($margin * 0.5);
-    @media (max-width: variables.$breakpoint__sm) {
-      justify-content: center;
-    }
+  @media (max-width: variables.$breakpoint__sm) {
+    font-size: 14px;
   }
-  .project-link__list-item {
-    margin-left: $margin * 0.5;
-    margin-right: $margin * 0.5;
+  [class^="fa"] {
+    color: variables.$color__white;
+    margin-right: 8px;
   }
+}
+.project-link__list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  margin-left: -($margin * 0.5);
+  margin-right: -($margin * 0.5);
+  @media (max-width: variables.$breakpoint__sm) {
+    justify-content: center;
+  }
+}
+.project-link__list-item {
+  margin-left: $margin * 0.5;
+  margin-right: $margin * 0.5;
 }

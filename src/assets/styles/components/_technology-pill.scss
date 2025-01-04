@@ -1,24 +1,22 @@
 @use "styles/variables";
 
-@at-root {
-  $offset: 10px;
-  .technology-pill {
-    border-radius: 4px;
-    font-size: 14px;
-    padding: 2px 8px;
-    display: inline-block;
-    margin-bottom: 0.5em;
-    margin-right: 3px;
-    color: variables.$color__white;
-    background-color: variables.$color__purple--500;
-    font-weight: 600;
-    @media (max-width: variables.$breakpoint__sm) {
-      font-size: 12px;
-    }
+$offset: 10px;
+.technology-pill {
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 2px 8px;
+  display: inline-block;
+  margin-bottom: 0.5em;
+  margin-right: 3px;
+  color: variables.$color__white;
+  background-color: variables.$color__purple--500;
+  font-weight: 600;
+  @media (max-width: variables.$breakpoint__sm) {
+    font-size: 12px;
   }
-  .technology-pill__wrapper {
-    list-style-type: none;
-    padding: 0;
-    margin: 8px 0;
-  }
+}
+.technology-pill__wrapper {
+  list-style-type: none;
+  padding: 0;
+  margin: 8px 0;
 }

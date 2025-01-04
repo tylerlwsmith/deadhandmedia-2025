@@ -1,64 +1,62 @@
 @use "styles/variables";
 
-@at-root {
-  $breakpoint: 550px;
-  .page-blog-list {
-    position: relative;
-    display: flex;
-    padding-bottom: 40px;
-    @media (max-width: $breakpoint) {
-      padding-bottom: 0;
-    }
+$breakpoint: 550px;
+.page-blog-list {
+  position: relative;
+  display: flex;
+  padding-bottom: 40px;
+  @media (max-width: $breakpoint) {
+    padding-bottom: 0;
   }
-  .page-blog-list__year-heading {
-    position: relative;
-    margin-bottom: 40px;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    text-align: center;
-    &:not(:first-of-type) {
-      margin-top: 100px;
-    }
+}
+.page-blog-list__year-heading {
+  position: relative;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  &:not(:first-of-type) {
+    margin-top: 100px;
   }
-  .page-blog-list__year-heading-inner {
-    background: variables.$color__background;
-    padding: 0 10px;
-    &:after {
-      content: "";
-      z-index: -5;
-      top: 50%;
-      left: 10px;
-      right: 10px;
-      color: variables.$color__gray--light;
-      border-bottom: 1px solid;
-      position: absolute;
-    }
+}
+.page-blog-list__year-heading-inner {
+  background: variables.$color__background;
+  padding: 0 10px;
+  &:after {
+    content: "";
+    z-index: -5;
+    top: 50%;
+    left: 10px;
+    right: 10px;
+    color: variables.$color__gray--light;
+    border-bottom: 1px solid;
+    position: absolute;
   }
-  .page-blog-list__year {
-    display: block;
-    font-weight: 400;
-  }
-  .page-blog-list__year-count {
-    font-weight: 400;
-    font-size: 14px;
+}
+.page-blog-list__year {
+  display: block;
+  font-weight: 400;
+}
+.page-blog-list__year-count {
+  font-weight: 400;
+  font-size: 14px;
+  color: variables.$color__muted;
+  display: block;
+}
+.page-blog-list__year-heading-link {
+  @at-root .page-blog-list__year-heading & {
+    display: inline-block;
+    position: absolute;
+    right: calc(100% - 6px);
+    top: 2px;
+    font-weight: 300;
     color: variables.$color__muted;
-    display: block;
+    @media (pointer: fine) {
+      display: none;
+    }
   }
-  .page-blog-list__year-heading-link {
-    @at-root .page-blog-list__year-heading & {
-      display: inline-block;
-      position: absolute;
-      right: calc(100% - 6px);
-      top: 2px;
-      font-weight: 300;
-      color: variables.$color__muted;
-      @media (pointer: fine) {
-        display: none;
-      }
-    }
-    @at-root .page-blog-list__year-heading:hover & {
-      display: inline-block !important;
-    }
+  @at-root .page-blog-list__year-heading:hover & {
+    display: inline-block !important;
   }
 }
