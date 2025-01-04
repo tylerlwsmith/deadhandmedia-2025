@@ -1,4 +1,3 @@
-import { loadEvent } from "./event-names";
 import { prefersReducedMotion } from "./helpers";
 /**
  * Animate the homepage text. This must execute immediately: do not move into a
