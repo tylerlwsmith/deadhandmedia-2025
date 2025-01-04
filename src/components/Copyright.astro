@@ -1,0 +1,21 @@
+---
+import { randomUUID } from "node:crypto";
+
+const currentYear = new Date().toLocaleDateString("en-us", {
+  year: "numeric",
+  timeZone: "America/Los_Angeles",
+});
+
+const dateId = `copyright-${randomUUID()}`;
+---
+
+&copy;<span id={dateId}>{currentYear}</span> Tyler Smith
+
+<script is:inline data-date-id={dateId}>
+  const year = new Date().toLocaleDateString("en-us", {
+    year: "numeric",
+    timeZone: "America/Los_Angeles",
+  });
+  document.getElementById(document.currentScript.dataset.dateId).innerHTML =
+    year;
+</script>
