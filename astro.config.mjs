@@ -6,6 +6,7 @@ import { NodePackageImporter } from "sass-embedded";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://deadhandmedia.com",
   adapter: cloudflare({
     platformProxy: {
       enabled: true,
