@@ -9,7 +9,7 @@ const currentYear = new Date().toLocaleDateString("en-us", {
 const dateId = `copyright-${randomUUID()}`;
 ---
 
-&copy;<span id={dateId}>{currentYear}</span> Tyler Smith
+&copy;<span id={dateId} class="copyright-year">{currentYear}</span> Tyler Smith
 
 <script is:inline data-date-id={dateId}>
   const year = new Date().toLocaleDateString("en-us", {
@@ -20,3 +20,9 @@ const dateId = `copyright-${randomUUID()}`;
   const yearDomId = document.currentScript.dataset.dateId;
   document.getElementById(yearDomId).innerHTML = year;
 </script>
+
+<style>
+  .copyright-year {
+    font-variant-numeric: tabular-nums;
+  }
+</style>
