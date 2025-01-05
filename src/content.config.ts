@@ -47,8 +47,8 @@ const UserSchema = z.object({
   githubUsername: z.string().nullable(),
   userId: z.number(),
   websiteUrl: z.string().nullable(),
-  profileImage: z.string().nullable(),
-  profileImage90: z.string().nullable(),
+  profileImage: z.string().nullable().optional(),
+  profileImage90: z.string().nullable().optional(),
 });
 
 // Define the Article schema
