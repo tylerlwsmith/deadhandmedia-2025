@@ -31,7 +31,8 @@ import Page from "src/layouts/Page.astro";
       @media (max-width: variables.$breakpoint__sm) {
         padding: 0 0;
       }
-      .tyler-smith-resume-wrapper {
+      // Loaded dynamically.
+      :global(.tyler-smith-resume-wrapper) {
         width: 100%;
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 
