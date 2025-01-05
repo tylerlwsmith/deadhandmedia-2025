@@ -33,8 +33,6 @@ const tagsByCount = tagsAlphabetized.toSorted(([_a, a], [_b, b]) => {
   return 0;
 });
 
-console.log(tagsByCount);
-
 // Need to keep as entries because JS will sort numbered keys.
 const postByYearDescEntries = Object.entries(postsByYear).toSorted((a, b) =>
   a[0] < b[0] ? 1 : -1
