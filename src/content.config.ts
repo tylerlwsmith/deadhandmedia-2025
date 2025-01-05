@@ -12,7 +12,7 @@ type DevApiUser = {
   profile_image_90: string;
 };
 
-type DevApiArticle = {
+type DevApiPost = {
   type_of: string;
   id: number;
   title: string;
@@ -51,8 +51,7 @@ const UserSchema = z.object({
   profileImage90: z.string().nullable().optional(),
 });
 
-// Define the Article schema
-const ArticleSchema = z.object({
+const PostSchema = z.object({
   typeOf: z.string(),
   id: z.string(),
   title: z.string(),
@@ -86,7 +85,7 @@ const blog = defineCollection({
       `https://dev.to/api/articles?username=tylerlwsmith&per_page=1000`
     );
 
-    const data: DevApiArticle[] = await response.json();
+    const data: DevApiPost[] = await response.json();
 
     const result = toCamelCase(data).map((data: any) => ({
       ...data,
@@ -95,7 +94,7 @@ const blog = defineCollection({
 
     return result;
   },
-  schema: ArticleSchema,
+  schema: PostSchema,
 });
 
 export const collections = { blog };
