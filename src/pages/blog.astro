@@ -23,19 +23,21 @@ const tagCountMin2 = Object.entries(tagCounts).filter(
   ([_tag, count]) => count > 1
 );
 
-const tagsAlphabetized = tagCountMin2.toSorted(([a], [b]) =>
-  a.localeCompare(b)
+const tagsAlphabetized = tagCountMin2.toSorted(([tagA], [tagB]) =>
+  tagA.localeCompare(tagB)
 );
 
-const tagsByCount = tagsAlphabetized.toSorted(([_a, a], [_b, b]) => {
-  if (a > b) return -1;
-  if (a < b) return 1;
-  return 0;
-});
+const tagsByCount = tagsAlphabetized.toSorted(
+  ([_tagA, countA], [_tagB, countB]) => {
+    if (countA > countB) return -1;
+    if (countA < countB) return 1;
+    return 0;
+  }
+);
 
 // Need to keep as entries because JS will sort numbered keys.
-const postByYearDescEntries = Object.entries(postsByYear).toSorted((a, b) =>
-  a[0] < b[0] ? 1 : -1
+const postByYearDescEntries = Object.entries(postsByYear).toSorted(
+  ([yearA], [yearB]) => (yearA < yearB ? 1 : -1)
 );
 ---
 
