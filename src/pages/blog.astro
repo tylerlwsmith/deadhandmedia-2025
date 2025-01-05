@@ -12,31 +12,6 @@ const postsByYear = Object.groupBy(blogPosts, (post) => {
   return new Date(post.publishedTimestamp).getFullYear().toString();
 });
 
-let tagCounts: { [key: string]: number } = {};
-for (const post of blogPosts) {
-  for (const tag of post.tagList) {
-    const currentCount = tagCounts[tag] || 0;
-
-    tagCounts[tag] = currentCount + 1;
-  }
-}
-
-const tagCountMin2 = Object.entries(tagCounts).filter(
-  ([_tag, count]) => count > 1
-);
-
-const tagsAlphabetized = tagCountMin2.toSorted(([tagA], [tagB]) =>
-  tagA.localeCompare(tagB)
-);
-
-const tagsByCount = tagsAlphabetized.toSorted(
-  ([_tagA, countA], [_tagB, countB]) => {
-    if (countA > countB) return -1;
-    if (countA < countB) return 1;
-    return 0;
-  }
-);
-
 // Need to keep as entries because JS will sort numbered keys.
 const postByYearDescEntries = Object.entries(postsByYear).toSorted(
   ([yearA], [yearB]) => (yearA < yearB ? 1 : -1)
@@ -66,9 +41,10 @@ const formattedDate = (datetime: string) => {
     class="page-blog-list container"
     x-data="blogPageInitData()"
     x-effect="sortTags(sortTagsBy)"
+    x-init="hydrateStateFromDOM"
     x-on:pageshow.window="hydrateStateFromDOM"
   >
-    <BlogSidebar />
+    <BlogSidebar posts={blogPosts} />
 
     <main id="main" class="content-column">
       <article class="content-area">

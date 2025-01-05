@@ -79,6 +79,8 @@ const PostSchema = z.object({
   user: UserSchema,
 });
 
+export type Post = z.infer<typeof PostSchema>;
+
 const blog = defineCollection({
   loader: async () => {
     const response = await fetch(
