@@ -1,0 +1,15 @@
+---
+import Page from "src/layouts/Page.astro";
+---
+
+<Page title="Resume">
+  <main id="main" class="page-resume">
+    <h1 class="page-title sr-only">Resume</h1>
+
+    <div class="page-resume__resume-container">
+      <script
+        is:inline
+        src={`${Astro.locals.runtime.env.RESUME_ORIGIN}/embed.js`}></script>
+    </div>
+  </main>
+</Page>

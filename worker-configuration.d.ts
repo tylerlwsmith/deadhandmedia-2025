@@ -2,5 +2,6 @@
 
 interface Env {
 	ANALYTICS_ID: "G-6RTSHZKVFS";
+	RESUME_ORIGIN: "https://resume.deadhandmedia.com";
 	ASSETS: Fetcher;
 }
