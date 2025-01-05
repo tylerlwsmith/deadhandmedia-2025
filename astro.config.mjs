@@ -12,6 +12,9 @@ export default defineConfig({
       enabled: true,
     },
   }),
+  experimental: {
+    svg: true,
+  },
   vite: {
     css: {
       preprocessorOptions: {

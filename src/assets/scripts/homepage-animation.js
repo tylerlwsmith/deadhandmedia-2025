@@ -1,9 +1,12 @@
-import { prefersReducedMotion } from "scripts/helpers";
 /**
  * Animate the homepage text. This must execute immediately: do not move into a
  * "DOMContentLoaded" callback.
  */
 (function () {
+  function prefersReducedMotion() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
   if (prefersReducedMotion()) return;
   /**
    * Creating the style tag in JavaScript ensures that the text will be

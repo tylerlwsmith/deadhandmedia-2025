@@ -16,6 +16,7 @@ const dateId = `copyright-${randomUUID()}`;
     year: "numeric",
     timeZone: "America/Los_Angeles",
   });
-  document.getElementById(document.currentScript.dataset.dateId).innerHTML =
-    year;
+
+  const yearDomId = document.currentScript.dataset.dateId;
+  document.getElementById(yearDomId).innerHTML = year;
 </script>

@@ -1,9 +1,13 @@
 ---
 import "@fontsource/bungee";
 
+import { socialLinks } from "src/data/socialLinks";
+
 import Page from "src/layouts/Page.astro";
 import Header from "src/components/Header.astro";
 import Copyright from "src/components/Copyright.astro";
+
+import TylersGiantHead from "src/assets/images/tylers-giant-head.svg";
 
 const content =
   "I build software using Laravel, Django, Rails, React, Alpine, Node, Go, Docker, and a lot of duct tape.";
@@ -11,10 +15,62 @@ const content =
 
 <Page title="Tyler Smith" omitSiteName={true} description={content}>
   <Fragment slot="body">
-    <Header absolute={true} lightText={true} hideSiteTitle={true} />
-    {content}
-    <footer>
-      <Copyright />
-    </footer>
+    <div class="page-home">
+      <div class="page-home__head-container" aria-label="Tyler's Giant Head">
+        <div class="page-home__head">
+          <TylersGiantHead />
+        </div>
+      </div>
+
+      <div class="page-home__content-container">
+        <Header absolute={true} lightText={true} hideSiteTitle={true} />
+
+        <main id="main" class="page-home__main">
+          <header class="page-home__heading-wrapper">
+            <h1 class="page-home__heading animate:fade-in">Tyler Smith</h1>
+            <h2 class="page-home__sub-heading animate:fade-in">
+              Software Engineer
+            </h2>
+          </header>
+
+          <div class="page-home__content animate:fade-in">
+            <p>
+              {content}
+            </p>
+          </div>
+
+          <div class="page-home__platform-link-wrapper">
+            <ul class="platform-link__list platform-link__list--gap-wide">
+              {
+                socialLinks.map((link) => (
+                  <li class="platform-link__wrapper animate:fade-in">
+                    <a
+                      href={link.url}
+                      rel={["noreferrer", "noopener", link?.rel]
+                        .filter(Boolean)
+                        .join("")}
+                      class="platform-link"
+                    >
+                      <span
+                        class:list={["fab", link.icon]}
+                        aria-hidden="true"
+                      />
+                      <span class="sr-only">{link.platform}</span>
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </main>
+        <footer class="page-home__footer">
+          <Copyright />
+        </footer>
+      </div>
+    </div>
+  </Fragment>
+
+  <Fragment slot="head">
+    <script is:inline src="src/assets/scripts/homepage-animation.js"></script>
   </Fragment>
 </Page>
