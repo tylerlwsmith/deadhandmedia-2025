@@ -83,7 +83,7 @@ const ArticleSchema = z.object({
 const blog = defineCollection({
   loader: async () => {
     const response = await fetch(
-      `https://dev.to/api/articles?username=tylerlwsmith&per_page=1`
+      `https://dev.to/api/articles?username=tylerlwsmith&per_page=1000`
     );
 
     const data: DevApiArticle[] = await response.json();
