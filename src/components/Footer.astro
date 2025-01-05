@@ -25,3 +25,52 @@ import Copyright from "./Copyright.astro";
     </ul>
   </div>
 </footer>
+
+<style lang="scss">
+  @use "styles/mixins";
+  @use "styles/variables";
+
+  .footer {
+    $vertical-padding: 26px;
+    $children-vertical-padding: 5px;
+    @include mixins.site-padding;
+    & {
+      margin-top: auto;
+      padding-top: $vertical-padding;
+      padding-bottom: $vertical-padding;
+      font-weight: 400;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      @media (max-width: variables.$breakpoint__sm) {
+        & > * {
+          flex-basis: 100%;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .footer__copyright-wrapper {
+    padding-right: 16px;
+    color: variables.$color__muted;
+    font-size: 15px;
+  }
+  .footer__platform-link-wrapper {
+    @media (max-width: variables.$breakpoint__sm) {
+      order: -1;
+      margin-bottom: 24px;
+    }
+    .fa-stack {
+      margin: 0 -4px;
+    }
+    a {
+      color: #dad8df;
+      &:hover,
+      &:focus,
+      &:active {
+        color: variables.$color__purple--300;
+      }
+    }
+  }
+</style>
