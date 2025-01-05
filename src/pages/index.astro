@@ -2,6 +2,7 @@
 import "@fontsource/bungee";
 
 import Page from "src/layouts/Page.astro";
+import Header from "src/components/Header.astro";
 import Copyright from "src/components/Copyright.astro";
 
 const content =
@@ -10,6 +11,7 @@ const content =
 
 <Page title="Tyler Smith" omitSiteName={true} description={content}>
   <Fragment slot="body">
+    <Header absolute={true} lightText={true} hideSiteTitle={true} />
     {content}
     <footer>
       <Copyright />
