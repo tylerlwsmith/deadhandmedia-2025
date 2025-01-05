@@ -1,6 +1,8 @@
 ---
 import Page from "src/layouts/Page.astro";
+import PageTitle from "src/components/PageTitle.astro";
 import { getCollection } from "astro:content";
+import BlogSidebar from "src/components/BlogSidebar.astro";
 
 const blogPosts = (await getCollection("blog")).map(
   (blogPost) => blogPost.data
@@ -39,18 +41,153 @@ const tagsByCount = tagsAlphabetized.toSorted(
 const postByYearDescEntries = Object.entries(postsByYear).toSorted(
   ([yearA], [yearB]) => (yearA < yearB ? 1 : -1)
 );
+
+const makeYearId = (year: string) => `${year}-posts`;
+const yyyymmdd = (datetime: string) => {
+  const date = new Date(datetime);
+  return new Intl.DateTimeFormat("en-CA", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(date);
+};
+const formattedDate = (datetime: string) => {
+  const date = new Date(datetime);
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }).format(date);
+};
 ---
 
 <Page title="Blog">
-  {
-    postByYearDescEntries.map(([year, posts]) => (
+  <div
+    class="page-blog-list container"
+    x-data="blogPageInitData()"
+    x-effect="sortTags(sortTagsBy)"
+    x-on:pageshow.window="hydrateStateFromDOM"
+  >
+    <BlogSidebar />
+
+    <main id="main" class="content-column">
+      <article class="content-area">
+        <PageTitle data-total-posts={blogPosts.length}> Blog </PageTitle>
+      </article>
+
       <div>
-        {year}{" "}
-        {posts?.length === 1
-          ? `${posts?.length} post`
-          : `${posts?.length} posts`}
-        <pre>{JSON.stringify(posts, null, 2)}</pre>
+        <button
+          class="blog-filter__mobile-toggle"
+          aria-expanded="false"
+          x-bind:aria-expanded="sidebarIsOpen"
+          x-on:click="() => setTimeout(() => toggleSidebar(), 0)"
+        >
+          Show filters
+        </button>
       </div>
-    ))
-  }
+
+      <div
+        class="active-filter__container"
+        x-bind:class="activeFilterContainerSticky ? 'active-filter__container--stuck' : ''"
+      >
+        <template x-if="activeFilters.length > 0">
+          <div class="active-filter__list">
+            <span class="active-filter__label">Active Filters:</span>
+            <template x-for="activeFilter in activeFilters">
+              <button
+                class="active-filter"
+                data="{activeFilter: activeFilter}"
+                x-text="`× ${activeFilter}`"
+                x-on:click="activeFilters = activeFilters.filter(filter => filter !== activeFilter)"
+              ></button>
+            </template>
+          </div>
+        </template>
+      </div>
+
+      {
+        postByYearDescEntries.map(([year, posts]) => (
+          <Fragment>
+            <h2
+              id={makeYearId(year)}
+              class="page-blog-list__year-heading"
+              x-show="activeFilters.length === 0"
+            >
+              <span class="page-blog-list__year-heading-inner">
+                <span class="page-blog-list__year">{year}</span>
+                <span class="page-blog-list__year-count">
+                  {posts?.length === 1
+                    ? `${posts?.length} post`
+                    : `${posts?.length} posts`}
+                </span>
+              </span>
+              <a
+                class="page-blog-list__year-heading-link"
+                href={`#${makeYearId(year)}`}
+              >
+                #
+              </a>
+            </h2>
+            {posts?.map((post) => (
+              <Fragment>
+                <article
+                  x-data={JSON.stringify({ tagList: post.tagList })}
+                  class="blog-preview"
+                  x-show="postIsVisible"
+                >
+                  <h3 class="blog-preview__title">
+                    <a href={post.url} class="blog-preview__link">
+                      {post.title}
+                    </a>
+                  </h3>
+
+                  <ul
+                    class="blog-preview__tag-list"
+                    x-cloak
+                    x-show="activeFilters.length > 0"
+                  >
+                    {post.tagList.map((tag) => (
+                      <li class="blog-preview__tag">#{tag}</li>
+                    ))}
+                  </ul>
+
+                  <div class="blog-preview__meta-wrapper">
+                    <time
+                      class="blog-preview__published_date"
+                      datetime={yyyymmdd(post.publishedTimestamp)}
+                    >
+                      {formattedDate(post.publishedTimestamp)}
+                    </time>
+                    <dl
+                      class="blog-preview__meta-list"
+                      x-cloak
+                      x-show="activeFilters.length > 0"
+                    >
+                      {post.publicReactionsCount > 0 ? (
+                        <div class="blog-preview__meta-list-item">
+                          <dt class="blog-preview__meta-term">reactions</dt>
+                          <dd class="blog-preview__meta-detail">
+                            {post.publicReactionsCount}
+                          </dd>
+                        </div>
+                      ) : null}
+
+                      {post.commentsCount > 0 ? (
+                        <div class="blog-preview__meta-list-item">
+                          <dt class="blog-preview__meta-term">reactions</dt>
+                          <dd class="blog-preview__meta-detail">
+                            {post.commentsCount}
+                          </dd>
+                        </div>
+                      ) : null}
+                    </dl>
+                  </div>
+                </article>
+              </Fragment>
+            ))}
+          </Fragment>
+        ))
+      }
+    </main>
+  </div>
 </Page>
