@@ -46,18 +46,18 @@ export const blogPageInitData = () => ({
     try {
       ({
         [SORT_TAGS_BY.NAME]() {
-          list = document.querySelector("[data-filter-list]");
-          listItems = [...list.querySelectorAll("li[data-filter-name]")];
-          getName = (el) => el.dataset.filterName;
+          const list = document.querySelector("[data-filter-list]");
+          const listItems = [...list.querySelectorAll("li[data-filter-name]")];
+          const getName = (el) => el.dataset.filterName;
 
           listItems
             .sort((a, b) => getName(a).localeCompare(getName(b)))
             .forEach((el) => list.appendChild(el));
         },
         [SORT_TAGS_BY.COUNT]() {
-          list = document.querySelector("[data-filter-list]");
-          listItems = [...list.querySelectorAll("li[data-filter-count]")];
-          getCount = (el) => el.dataset.filterCount;
+          const list = document.querySelector("[data-filter-list]");
+          const listItems = [...list.querySelectorAll("li[data-filter-count]")];
+          const getCount = (el) => el.dataset.filterCount;
 
           listItems
             .sort((a, b) => getCount(b) - getCount(a))
