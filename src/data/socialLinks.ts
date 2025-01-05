@@ -37,11 +37,11 @@ export const socialLinks: SocialLink[] = [
     icon: "fas fa-envelope-square",
     iconAlt: "fas fa-envelope",
   },
-  {
-    platform: "Mastodon",
-    url: "https://hachyderm.io/@tylerlwsmith",
-    icon: "fa-brands fa-mastodon",
-    iconAlt: "fa-brands fa-mastodon",
-    rel: "me",
-  },
+  // {
+  //   platform: "Mastodon",
+  //   url: "https://hachyderm.io/@tylerlwsmith",
+  //   icon: "fa-brands fa-mastodon",
+  //   iconAlt: "fa-brands fa-mastodon",
+  //   rel: "me",
+  // },
 ];
