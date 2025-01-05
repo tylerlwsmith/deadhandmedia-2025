@@ -10,6 +10,31 @@ const postsByYear = Object.groupBy(blogPosts, (post) => {
   return new Date(post.publishedTimestamp).getFullYear().toString();
 });
 
+let tagCounts: { [key: string]: number } = {};
+for (const post of blogPosts) {
+  for (const tag of post.tagList) {
+    const currentCount = tagCounts[tag] || 0;
+
+    tagCounts[tag] = currentCount + 1;
+  }
+}
+
+const tagCountMin2 = Object.entries(tagCounts).filter(
+  ([_tag, count]) => count > 1
+);
+
+const tagsAlphabetized = tagCountMin2.toSorted(([a], [b]) =>
+  a.localeCompare(b)
+);
+
+const tagsByCount = tagsAlphabetized.toSorted(([_a, a], [_b, b]) => {
+  if (a > b) return -1;
+  if (a < b) return 1;
+  return 0;
+});
+
+console.log(tagsByCount);
+
 // Need to keep as entries because JS will sort numbered keys.
 const postByYearDescEntries = Object.entries(postsByYear).toSorted((a, b) =>
   a[0] < b[0] ? 1 : -1
@@ -24,6 +49,7 @@ const postByYearDescEntries = Object.entries(postsByYear).toSorted((a, b) =>
         {posts?.length === 1
           ? `${posts?.length} post`
           : `${posts?.length} posts`}
+        <pre>{JSON.stringify(posts, null, 2)}</pre>
       </div>
     ))
   }
