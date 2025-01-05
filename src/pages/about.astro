@@ -1,0 +1,17 @@
+---
+import Page from "src/layouts/Page.astro";
+import PageTitle from "src/components/PageTitle.astro";
+import { Content, frontmatter } from "../content/about.md";
+---
+
+<Page title={frontmatter.title}>
+  <div class="container vertical-page-padding">
+    <main id="main" class="content-column content-area">
+      <article>
+        <PageTitle>{frontmatter.title}</PageTitle>
+
+        <Content />
+      </article>
+    </main>
+  </div>
+</Page>

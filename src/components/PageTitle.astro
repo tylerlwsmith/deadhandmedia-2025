@@ -1,0 +1,22 @@
+<h1 class="page-title">
+  <slot />
+</h1>
+
+<style>
+  @use "styles/variables";
+
+  h1.page-title {
+    margin-top: 0.8em;
+    font-size: 80px;
+    letter-spacing: 0.05em;
+    font-weight: 400;
+    @media (max-width: variables.$breakpoint__md) {
+      font-size: 70px;
+      margin-bottom: 0.5em;
+    }
+    @media (max-width: variables.$breakpoint__sm) {
+      margin-top: 1.2em;
+      font-size: 44px;
+    }
+  }
+</style>
